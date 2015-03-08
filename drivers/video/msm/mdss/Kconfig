@@ -62,3 +62,8 @@ config LGE_MIPI_DZNY_JDI_INCELL_FHD_VIDEO_PANEL
 config LGE_LION_DSV
 	bool "LION_DSV Power Management chip"
 	default n
+
+config LCD_NOTIFY
+	depends on FB_MSM_MDSS
+	bool "LCD Notify"
+	default y
