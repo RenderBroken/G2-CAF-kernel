@@ -3051,3 +3051,11 @@ config MSM_CPU_VOLTAGE_CONTROL
 	default y
 	help
 	  This enables userspace CPU Voltage Control.
+
+config MSM_HOTPLUG
+	bool "MSM hotplug driver"
+	depends on HOTPLUG_CPU
+	default y
+	help
+	  The MSM hotplug driver controls on-/offlining of additional cores based
+	  on current cpu load.
