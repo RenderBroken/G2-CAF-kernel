@@ -23,7 +23,6 @@ VER=Render-Kernel
 
 # Vars
 export LOCALVERSION=~`echo $VER`
-export CROSS_COMPILE=${HOME}/android/source/toolchains/UBER-arm-eabi-4.9-cortex-a15-041915/bin/arm-eabi-
 export ARCH=arm
 export SUBARCH=arm
 export KBUILD_BUILD_USER=RenderBroken
@@ -35,8 +34,8 @@ KERNEL_DIR=`pwd`
 REPACK_DIR="${HOME}/android/source/kernel/G2-AnyKernel"
 PATCH_DIR="${HOME}/android/source/kernel/G2-AnyKernel/patch"
 MODULES_DIR="${HOME}/android/source/kernel/G2-AnyKernel/modules"
-ZIP_MOVE="${HOME}/android/source/zips/g2-zips"
-ZIMAGE_DIR="${HOME}/android/source/kernel/msm8974_G2_render_kernel/arch/arm/boot"
+ZIP_MOVE="${HOME}/android/source/zips/g2-caf-zips"
+ZIMAGE_DIR="${HOME}/android/source/kernel/msm8974_G2-CAF_render_kernel/arch/arm/boot"
 
 # Functions
 function clean_all {
@@ -114,6 +113,19 @@ case "$choice" in
 	"l01f")
 		VARIANT="l01f"
 		DEFCONFIG="l01f_defconfig"
+		break;;
+esac
+done
+
+echo "Pick Toolchain..."
+select choice in UBER-4.9-Cortex-a15 UBER-5.1
+do
+case "$choice" in
+	"UBER-4.9-Cortex-a15")
+		export CROSS_COMPILE=${HOME}/android/source/toolchains/UBER-arm-eabi-4.9-cortex-a15-062715/bin/arm-eabi-
+		break;;
+	"UBER-5.1")
+		export CROSS_COMPILE=${HOME}/android/source/toolchains/UBER-arm-eabi-5.1-062715/bin/arm-eabi-
 		break;;
 esac
 done
