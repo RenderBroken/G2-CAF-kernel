@@ -592,6 +592,8 @@ static void krait_update_uv(int *uv, int num, int boost_uv)
 
 extern int use_for_scaling(unsigned int freq);
 
+static unsigned int cnt;
+
 ssize_t show_UV_mV_table(struct cpufreq_policy *policy,
 			 char *buf)
 {
@@ -623,6 +625,11 @@ ssize_t store_UV_mV_table(struct cpufreq_policy *policy,
 	unsigned int num_levels = cpu_clk[cpu]->vdd_class->num_levels;
 	char size_cur[4];
 
+	if (cnt) {
+		cnt = 0;
+		return -EINVAL;
+	}
+
 	for (i = 0; i < num_levels; i++) {
 		if (use_for_scaling(cpu_clk[cpu]->fmax[i] / 1000) < 0)
 			continue;
@@ -640,7 +647,8 @@ ssize_t store_UV_mV_table(struct cpufreq_policy *policy,
 			cpu_clk[j]->vdd_class->vdd_uv[i] = val * 1000;
 
 		ret = sscanf(buf, "%s", size_cur);
-		buf += strlen(size_cur) + 1;
+		cnt = strlen(size_cur);
+		buf += cnt + 1;
 	}
 
 	return count;
