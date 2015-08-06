@@ -45,6 +45,10 @@ function checkout_branches {
 }
 
 function clean_all {
+		rm -f $KERNEL_DIR/arch/arm/boot/*.dtb
+		rm -f $KERNEL_DIR/arch/arm/boot/*.cmd
+		rm -f $KERNEL_DIR/arch/arm/boot/zImage
+		rm -f $KERNEL_DIR/arch/arm/boot/Image
 		rm -rf $MODULES_DIR/*
 		cd $REPACK_DIR
 		rm -rf $KERNEL
@@ -114,7 +118,7 @@ case "$choice" in
 		break;;
 	"f320x")
 		VARIANT="f320x"
-		DEFCONFIG="f320x_defconfig"
+		DEFCONFIG="f320_defconfig"
 		break;;
 	"l01f")
 		VARIANT="l01f"
