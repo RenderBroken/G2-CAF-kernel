@@ -45,6 +45,10 @@ function checkout_branches {
 }
 
 function clean_all {
+		rm -f $KERNEL_DIR/arch/arm/boot/*.dtb
+		rm -f $KERNEL_DIR/arch/arm/boot/*.cmd
+		rm -f $KERNEL_DIR/arch/arm/boot/zImage
+		rm -f $KERNEL_DIR/arch/arm/boot/Image
 		rm -rf $MODULES_DIR/*
 		cd $REPACK_DIR
 		rm -rf $KERNEL
@@ -114,7 +118,7 @@ case "$choice" in
 		break;;
 	"f320x")
 		VARIANT="f320x"
-		DEFCONFIG="f320x_defconfig"
+		DEFCONFIG="f320_defconfig"
 		break;;
 	"l01f")
 		VARIANT="l01f"
@@ -128,10 +132,10 @@ select choice in UBER-4.9-Cortex-a15 UBER-5.1
 do
 case "$choice" in
 	"UBER-4.9-Cortex-a15")
-		export CROSS_COMPILE=${HOME}/android/source/toolchains/UBER-arm-eabi-4.9-cortex-a15-062715/bin/arm-eabi-
+		export CROSS_COMPILE=${HOME}/android/source/toolchains/UBER-arm-eabi-4.9-cortex-a15-08062015/bin/arm-eabi-
 		break;;
 	"UBER-5.1")
-		export CROSS_COMPILE=${HOME}/android/source/toolchains/UBER-arm-eabi-5.1-062715/bin/arm-eabi-
+		export CROSS_COMPILE=${HOME}/android/source/toolchains/UBER-arm-eabi-5.2-8062015/bin/arm-eabi-
 		break;;
 esac
 done
