@@ -35,7 +35,7 @@ REPACK_DIR="${HOME}/android/source/kernel/G2-AnyKernel"
 PATCH_DIR="${HOME}/android/source/kernel/G2-AnyKernel/patch"
 MODULES_DIR="${HOME}/android/source/kernel/G2-AnyKernel/modules"
 ZIP_MOVE="${HOME}/android/source/zips/g2-caf-zips"
-ZIMAGE_DIR="${HOME}/android/source/kernel/msm8974_G2-CAF_render_kernel/arch/arm/boot"
+ZIMAGE_DIR="${HOME}/android/source/kernel/G2-CAF-kernel/arch/arm/boot"
 
 # Functions
 function checkout_branches {
@@ -128,14 +128,14 @@ esac
 done
 
 echo "Pick Toolchain..."
-select choice in UBER-4.9-Cortex-a15 UBER-5.1
+select choice in UBER-4.9-Cortex-a15 UBER-5.2
 do
 case "$choice" in
 	"UBER-4.9-Cortex-a15")
 		export CROSS_COMPILE=${HOME}/android/source/toolchains/UBER-arm-eabi-4.9-cortex-a15-08062015/bin/arm-eabi-
 		break;;
-	"UBER-5.1")
-		export CROSS_COMPILE=${HOME}/android/source/toolchains/UBER-arm-eabi-5.2-8062015/bin/arm-eabi-
+	"UBER-5.2")
+		export CROSS_COMPILE=${HOME}/android/source/toolchains/UBER-arm-eabi-5.2-08062015/bin/arm-eabi-
 		break;;
 esac
 done
